@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reporte Productividad Enecon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --primary: #0056b3; --bg: #f8fafc; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--bg); }
+        .item-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; transition: all 0.2s; }
+        .item-card:focus-within { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+        /* Pantalla de carga */
+        #loader { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 50; flex-direction: column; justify-content: center; align-items: center; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #0056b3; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="pb-10">
+
+    <div id="loader">
+        <div class="spinner mb-4"></div>
+        <h2 class="text-xl font-bold text-blue-800">Enviando reporte a central...</h2>
+    </div>
+
+    <div class="bg-white p-6 shadow-md mb-6 flex flex-col items-center justify-center border-b-4 border-blue-700">
+        <img src="Enecon Logo.png" alt="Logo Enecon" class="h-20 mb-3 object-contain">
+        <h1 class="text-2xl font-bold text-blue-800 text-center tracking-tight">PRODUCTIVIDAD DIARIA</h1>
+        <p class="text-gray-500 text-center text-sm font-medium mt-1">Registro de Cuadrillas en Campo</p>
+    </div>
+
+    <div class="max-w-md mx-auto px-4">
+        <form id="prodForm" class="space-y-6">
+            
+            <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4 border border-gray-100">
+                <h2 class="text-blue-800 font-bold uppercase text-xs tracking-wider">Información Base</h2>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700">DIVISA</label>
+                    <select name="E_MP" id="emp" required
+                        class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-medium">
+                        <option value="" disabled selected>Selecciona la cuadrilla...</option>
+                        <option value="E_MP055">E_MP055</option>
+                        <option value="E_MP056">E_MP056</option>
+                        <option value="E_MP057">E_MP057</option>
+                        <option value="E_MP058">E_MP058</option>
+                        <option value="E_MP059">E_MP059</option>
+                        <option value="E_MP060">E_MP060</option>
+                        <option value="E_MP061">E_MP061</option>
+                        <option value="E_MP064">E_MP064</option>
+                        <option value="E_MP065">E_MP065</option>
+                        <option value="E_MP067">E_MP067</option>
+                        <option value="E_MP068">E_MP068</option>
+                        <option value="E_MP069">E_MP069</option>
+                        <option value="E_MP070">E_MP070</option>
+                        <option value="E_MP071">E_MP071</option>
+                        <option value="E_MP072">E_MP072</option>
+                        <option value="E_MP073">E_MP073</option>
+                        <option value="E_MP074">E_MP074</option>
+                        <option value="E_MP076">E_MP076</option>
+                        <option value="E_MP077">E_MP077</option>
+                        <option value="E_MP078">E_MP078</option>
+                        <option value="E_MP079">E_MP079</option>
+                        <option value="E_MP080">E_MP080</option>
+                        <option value="E_MP081">E_MP081</option>
+                        <option value="E_MP082">E_MP082</option>
+                        <option value="E_MP086">E_MP086</option>
+                        <option value="E_MP088">E_MP088</option>
+                        <option value="E_MP089">E_MP089</option>
+                        <option value="E_MP090">E_MP090</option>
+                        <option value="E_MP184">E_MP184</option>
+                        <option value="E_MP186">E_MP186</option>
+                        <option value="E_MP194">E_MP194</option>
+                        <option value="E_MP304">E_MP304</option>
+                        <option value="E_MP316">E_MP316</option>
+                        <option value="E_MP549">E_MP549</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">FECHA</label>
+                        <input type="date" name="FECHA" id="fecha" required
+                            class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">CIRCUITO</label>
+                        <input type="text" name="CIRCUITO" id="circuito" placeholder="Nombre" required
+                            class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h2 class="text-blue-800 font-bold uppercase text-xs tracking-wider px-2">Actividades Realizadas</h2>
+                <div class="grid grid-cols-1 gap-3" id="itemsContainer">
+                    </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4 border border-gray-100">
+                <h2 class="text-orange-600 font-bold uppercase text-xs tracking-wider">Tiempos y Novedades</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 italic">¿Horas de lluvia?</label>
+                        <input type="number" step="0.5" name="H_LLUVIA" id="h_lluvia" placeholder="0"
+                            class="w-full mt-1 p-3 bg-orange-50 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg font-semibold text-gray-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 italic">¿Horas vehículo varado?</label>
+                        <input type="number" step="0.5" name="H_VARADO" id="h_varado" placeholder="0"
+                            class="w-full mt-1 p-3 bg-orange-50 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg font-semibold text-gray-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 italic">¿Horas en inspección SST?</label>
+                        <input type="number" step="0.5" name="H_SST" id="h_sst" placeholder="0"
+                            class="w-full mt-1 p-3 bg-orange-50 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg font-semibold text-gray-700">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4 border border-gray-100">
+                <h2 class="text-blue-800 font-bold uppercase text-xs tracking-wider">Observaciones</h2>
+                <div>
+                    <textarea name="OBSERVACIONES" id="observaciones" rows="3" placeholder="Escribe aquí cualquier novedad..."
+                        class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" id="btnSubmit"
+                class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-5 rounded-2xl shadow-xl transform active:scale-95 transition-all text-xl">
+                ENVIAR REPORTE
+            </button>
+
+        </form>
+    </div>
+
+    <script>
+        const listaItems = [
+            { id: 1, desc: "Poda" },
+            { id: 2, desc: "Poda compensada" },
+            { id: 3, desc: "Cerco vivo" },
+            { id: 4, desc: "Rocería" },
+            { id: 5, desc: "Visita puntual" },
+            { id: 6, desc: "Luminarias" },
+            { id: 7, desc: "Horas camioneta" },
+            { id: 8, desc: "Horas moto" },
+            { id: 9, desc: "Tala alta compl. (CAP>95cm)" },
+            { id: 10, desc: "Tala baja compl. (CAP>95cm)" },
+            { id: 11, desc: "Recolección de podas" },
+            { id: 12, desc: "Recolección de talas" },
+            { id: 13, desc: "Horas carro canasta" },
+            { id: 14, desc: "Tala alta compl. (32-95cm)" },
+            { id: 15, desc: "Tala baja compl. (32-95cm)" },
+            { id: 16, desc: "Recolección LV" }
+        ];
+
+        const container = document.getElementById('itemsContainer');
+
+        listaItems.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'item-card p-4 flex items-center justify-between';
+            div.innerHTML = `
+                <div class="flex-1 pr-2">
+                    <span class="text-xs font-bold text-blue-800 block">ÍTEM ${item.id}</span>
+                    <span class="text-sm font-semibold text-gray-700 leading-tight">${item.desc}</span>
+                </div>
+                <div class="w-24">
+                    <input type="number" name="ITEM_${item.id}" placeholder="0"
+                        class="w-full text-right p-2 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg font-bold text-blue-800">
+                </div>
+            `;
+            container.appendChild(div);
+        });
+
+        document.getElementById('fecha').valueAsDate = new Date();
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbycIhzbotbA7K6p0Ty50yqfj5s4nVMcZwdUdbDOXQdfX82JYHwLh_GSpZsThjjYsRsfww/exec';
+
+        document.getElementById('prodForm').addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Mostrar pantalla de carga
+            document.getElementById('loader').style.display = 'flex';
+            
+            // Recolectar datos del formulario
+            const form = document.getElementById('prodForm');
+            let formData = new FormData(form);
+
+            // Enviar a Google Sheets
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => {
+                    document.getElementById('loader').style.display = 'none';
+                    alert("¡Reporte guardado exitosamente en el consolidado!");
+                    form.reset();
+                    document.getElementById('fecha').valueAsDate = new Date(); // Restaurar fecha a hoy
+                    window.scrollTo(0, 0); // Subir la pantalla
+                })
+                .catch(error => {
+                    document.getElementById('loader').style.display = 'none';
+                    alert("Hubo un error de conexión. Intenta nuevamente.");
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+</body>
+</html>
