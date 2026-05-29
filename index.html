@@ -79,9 +79,11 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700">PLACA VEHIC.</label>
-                    <input type="text" name="PLACA_VEHIC" id="placa" placeholder="Ej: ABC-123" required
-                        class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 uppercase">
+                    <label class="block text-sm font-semibold text-gray-700">PLACA VEHÍCULO (Sin espacios)</label>
+                    <input type="text" name="PLACA_VEHIC" id="placa" placeholder="ABC123" required
+                        maxlength="6" minlength="6"
+                        oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6)"
+                        class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-bold tracking-widest text-center text-lg">
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
@@ -95,6 +97,18 @@
                         <input type="text" name="CIRCUITO" id="circuito" placeholder="Nombre" required
                             class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
                     </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700">TIPO DE MANTENIMIENTO</label>
+                    <select name="TIPO_MANTENIMIENTO" id="tipo_mantenimiento" required
+                        class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-medium">
+                        <option value="" disabled selected>Seleccione...</option>
+                        <option value="MBC">MBC</option>
+                        <option value="MP">MP</option>
+                        <option value="AP">AP</option>
+                        <option value="DAÑO">DAÑO</option>
+                    </select>
                 </div>
             </div>
 
@@ -223,40 +237,36 @@
             const containerApoyo = document.getElementById('divisa_apoyo_container');
             if(this.value === 'SI') {
                 containerApoyo.style.display = 'block';
-                selectApoyo.setAttribute('required', 'required'); // Hacerlo obligatorio si marcó SI
+                selectApoyo.setAttribute('required', 'required');
             } else {
                 containerApoyo.style.display = 'none';
                 selectApoyo.removeAttribute('required');
-                selectApoyo.value = ""; // Limpiar el valor si marca NO
+                selectApoyo.value = ""; 
             }
         });
 
         // Fecha actual por defecto
         document.getElementById('fecha').valueAsDate = new Date();
 
-        // ¡IMPORTANTE! REVISA QUE ESTA SEA TU URL EXACTA
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwPmDGgNLsT2gH4f8GnGvOasSjTU2k56ZeU_ppGqMbS6RtuoZWKNCYcql74o9Ziv0hjzQ/exec';
+        // ¡IMPORTANTE! URL DE APPS SCRIPT
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbycIhzbotbA7K6p0Ty50yqfj5s4nVMcZwdUdbDOXQdfX82JYHwLh_GSpZsThjjYsRsfww/exec';
 
         document.getElementById('prodForm').addEventListener('submit', e => {
             e.preventDefault();
             
-            // Mostrar pantalla de carga
             document.getElementById('loader').style.display = 'flex';
             
-            // Recolectar datos del formulario
             const form = document.getElementById('prodForm');
             let formData = new FormData(form);
 
-            // Enviar a Google Sheets
             fetch(scriptURL, { method: 'POST', body: formData})
                 .then(response => {
                     document.getElementById('loader').style.display = 'none';
                     alert("¡Reporte guardado exitosamente en el consolidado!");
                     form.reset();
-                    // Restaurar elementos a su estado inicial
                     document.getElementById('fecha').valueAsDate = new Date(); 
                     document.getElementById('divisa_apoyo_container').style.display = 'none';
-                    window.scrollTo(0, 0); // Subir la pantalla
+                    window.scrollTo(0, 0);
                 })
                 .catch(error => {
                     document.getElementById('loader').style.display = 'none';
