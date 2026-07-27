@@ -32,6 +32,7 @@
     <div class="max-w-md mx-auto px-4">
         <form id="prodForm" class="space-y-6">
             
+            <!-- SECCIÓN 1: INFORMACIÓN BASE -->
             <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4 border border-gray-100">
                 <h2 class="text-blue-800 font-bold uppercase text-xs tracking-wider">Información Base</h2>
                 
@@ -78,14 +79,27 @@
                     </select>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700">PLACA VEHÍCULO (Sin espacios)</label>
-                    <input type="text" name="PLACA_VEHIC" id="placa" placeholder="ABC123" required
-                        maxlength="6" minlength="6"
-                        oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6)"
-                        class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-bold tracking-widest text-center text-lg">
+                <!-- DISPONIBILIDAD Y PLACA AGRUPADOS EN LA MISMA LÍNEA -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">DISP. EPM</label>
+                        <select name="DISP_EPM" required
+                            class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-medium">
+                            <option value="" disabled selected>Elegir...</option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700">PLACA (Sin espacios)</label>
+                        <input type="text" name="PLACA_VEHIC" placeholder="ABC123" required
+                            maxlength="6" minlength="6"
+                            oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6)"
+                            class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-bold tracking-widest text-center text-lg">
+                    </div>
                 </div>
 
+                <!-- FECHA Y CIRCUITO -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-semibold text-gray-700">FECHA</label>
@@ -94,14 +108,303 @@
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-gray-700">CIRCUITO</label>
-                        <input type="text" name="CIRCUITO" id="circuito" placeholder="Nombre" required
-                            class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+                        <select name="CIRCUITO" id="circuito" required
+                            class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-medium">
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option value="R02-05">R02-05</option>
+                            <option value="R02-07">R02-07</option>
+                            <option value="R02-08">R02-08</option>
+                            <option value="R02-09">R02-09</option>
+                            <option value="R02-11">R02-11</option>
+                            <option value="R02-12">R02-12</option>
+                            <option value="R02-13">R02-13</option>
+                            <option value="R02-14">R02-14</option>
+                            <option value="R02-15">R02-15</option>
+                            <option value="R02-17">R02-17</option>
+                            <option value="R02-18">R02-18</option>
+                            <option value="R02-19">R02-19</option>
+                            <option value="R02-20">R02-20</option>
+                            <option value="R02-21">R02-21</option>
+                            <option value="R02-22">R02-22</option>
+                            <option value="R02-23">R02-23</option>
+                            <option value="R02-24">R02-24</option>
+                            <option value="R02-26">R02-26</option>
+                            <option value="R02-27">R02-27</option>
+                            <option value="R02-28">R02-28</option>
+                            <option value="R02-30">R02-30</option>
+                            <option value="R02-31">R02-31</option>
+                            <option value="R02-32">R02-32</option>
+                            <option value="R02-33">R02-33</option>
+                            <option value="R02-34">R02-34</option>
+                            <option value="R02-36">R02-36</option>
+                            <option value="R02-38">R02-38</option>
+                            <option value="R02-39">R02-39</option>
+                            <option value="R02-40">R02-40</option>
+                            <option value="R02-41">R02-41</option>
+                            <option value="R02-60">R02-60</option>
+                            <option value="R02-61">R02-61</option>
+                            <option value="R02-62">R02-62</option>
+                            <option value="R02-63">R02-63</option>
+                            <option value="R03-40">R03-40</option>
+                            <option value="R04-01">R04-01</option>
+                            <option value="R04-02">R04-02</option>
+                            <option value="R04-03">R04-03</option>
+                            <option value="R04-04">R04-04</option>
+                            <option value="R04-05">R04-05</option>
+                            <option value="R04-06">R04-06</option>
+                            <option value="R04-07">R04-07</option>
+                            <option value="R04-08">R04-08</option>
+                            <option value="R04-09">R04-09</option>
+                            <option value="R04-10">R04-10</option>
+                            <option value="R04-11">R04-11</option>
+                            <option value="R04-12">R04-12</option>
+                            <option value="R04-13">R04-13</option>
+                            <option value="R04-40">R04-40</option>
+                            <option value="R04-41">R04-41</option>
+                            <option value="R05-01">R05-01</option>
+                            <option value="R05-02">R05-02</option>
+                            <option value="R05-03">R05-03</option>
+                            <option value="R05-04">R05-04</option>
+                            <option value="R05-05">R05-05</option>
+                            <option value="R05-06">R05-06</option>
+                            <option value="R05-07">R05-07</option>
+                            <option value="R05-08">R05-08</option>
+                            <option value="R05-09">R05-09</option>
+                            <option value="R05-10">R05-10</option>
+                            <option value="R05-11">R05-11</option>
+                            <option value="R05-12">R05-12</option>
+                            <option value="R05-13">R05-13</option>
+                            <option value="R05-14">R05-14</option>
+                            <option value="R05-15">R05-15</option>
+                            <option value="R05-17">R05-17</option>
+                            <option value="R05-19">R05-19</option>
+                            <option value="R05-20">R05-20</option>
+                            <option value="R05-21">R05-21</option>
+                            <option value="R05-22">R05-22</option>
+                            <option value="R05-23">R05-23</option>
+                            <option value="R05-25">R05-25</option>
+                            <option value="R05-26">R05-26</option>
+                            <option value="R05-27">R05-27</option>
+                            <option value="R05-28">R05-28</option>
+                            <option value="R05-29">R05-29</option>
+                            <option value="R05-30">R05-30</option>
+                            <option value="R05-31">R05-31</option>
+                            <option value="R05-32">R05-32</option>
+                            <option value="R05-33">R05-33</option>
+                            <option value="R05-34">R05-34</option>
+                            <option value="R05-35">R05-35</option>
+                            <option value="R05-36">R05-36</option>
+                            <option value="R05-37">R05-37</option>
+                            <option value="R05-38">R05-38</option>
+                            <option value="R05-40">R05-40</option>
+                            <option value="R05-41">R05-41</option>
+                            <option value="R07-01">R07-01</option>
+                            <option value="R07-02">R07-02</option>
+                            <option value="R07-03">R07-03</option>
+                            <option value="R07-04">R07-04</option>
+                            <option value="R07-05">R07-05</option>
+                            <option value="R07-06">R07-06</option>
+                            <option value="R07-07">R07-07</option>
+                            <option value="R07-08">R07-08</option>
+                            <option value="R07-09">R07-09</option>
+                            <option value="R07-10">R07-10</option>
+                            <option value="R07-11">R07-11</option>
+                            <option value="R07-12">R07-12</option>
+                            <option value="R07-13">R07-13</option>
+                            <option value="R07-14">R07-14</option>
+                            <option value="R07-15">R07-15</option>
+                            <option value="R07-16">R07-16</option>
+                            <option value="R07-17">R07-17</option>
+                            <option value="R07-18">R07-18</option>
+                            <option value="R07-19">R07-19</option>
+                            <option value="R07-20">R07-20</option>
+                            <option value="R07-21">R07-21</option>
+                            <option value="R07-22">R07-22</option>
+                            <option value="R07-23">R07-23</option>
+                            <option value="R07-24">R07-24</option>
+                            <option value="R07-25">R07-25</option>
+                            <option value="R07-29">R07-29</option>
+                            <option value="R07-40">R07-40</option>
+                            <option value="R07-60">R07-60</option>
+                            <option value="R08-18">R08-18</option>
+                            <option value="R09-01">R09-01</option>
+                            <option value="R09-02">R09-02</option>
+                            <option value="R09-03">R09-03</option>
+                            <option value="R09-04">R09-04</option>
+                            <option value="R09-05">R09-05</option>
+                            <option value="R09-06">R09-06</option>
+                            <option value="R09-07">R09-07</option>
+                            <option value="R09-08">R09-08</option>
+                            <option value="R09-09">R09-09</option>
+                            <option value="R09-10">R09-10</option>
+                            <option value="R09-11">R09-11</option>
+                            <option value="R09-12">R09-12</option>
+                            <option value="R09-13">R09-13</option>
+                            <option value="R09-14">R09-14</option>
+                            <option value="R09-15">R09-15</option>
+                            <option value="R09-16">R09-16</option>
+                            <option value="R09-17">R09-17</option>
+                            <option value="R09-18">R09-18</option>
+                            <option value="R09-19">R09-19</option>
+                            <option value="R09-20">R09-20</option>
+                            <option value="R09-21">R09-21</option>
+                            <option value="R09-22">R09-22</option>
+                            <option value="R09-23">R09-23</option>
+                            <option value="R09-24">R09-24</option>
+                            <option value="R09-25">R09-25</option>
+                            <option value="R09-40">R09-40</option>
+                            <option value="R09-41">R09-41</option>
+                            <option value="R09-42">R09-42</option>
+                            <option value="R09-43">R09-43</option>
+                            <option value="R09-44">R09-44</option>
+                            <option value="R10-01">R10-01</option>
+                            <option value="R10-02">R10-02</option>
+                            <option value="R10-03">R10-03</option>
+                            <option value="R10-04">R10-04</option>
+                            <option value="R10-05">R10-05</option>
+                            <option value="R10-06">R10-06</option>
+                            <option value="R10-07">R10-07</option>
+                            <option value="R10-08">R10-08</option>
+                            <option value="R10-09">R10-09</option>
+                            <option value="R10-11">R10-11</option>
+                            <option value="R10-12">R10-12</option>
+                            <option value="R10-13">R10-13</option>
+                            <option value="R10-14">R10-14</option>
+                            <option value="R10-15">R10-15</option>
+                            <option value="R10-16">R10-16</option>
+                            <option value="R10-17">R10-17</option>
+                            <option value="R10-18">R10-18</option>
+                            <option value="R10-40">R10-40</option>
+                            <option value="R10-50">R10-50</option>
+                            <option value="R12-01">R12-01</option>
+                            <option value="R12-02">R12-02</option>
+                            <option value="R12-03">R12-03</option>
+                            <option value="R12-04">R12-04</option>
+                            <option value="R12-05">R12-05</option>
+                            <option value="R12-06">R12-06</option>
+                            <option value="R12-07">R12-07</option>
+                            <option value="R12-08">R12-08</option>
+                            <option value="R12-09">R12-09</option>
+                            <option value="R12-10">R12-10</option>
+                            <option value="R12-11">R12-11</option>
+                            <option value="R12-12">R12-12</option>
+                            <option value="R12-13">R12-13</option>
+                            <option value="R12-14">R12-14</option>
+                            <option value="R12-15">R12-15</option>
+                            <option value="R12-16">R12-16</option>
+                            <option value="R12-17">R12-17</option>
+                            <option value="R12-18">R12-18</option>
+                            <option value="R12-19">R12-19</option>
+                            <option value="R12-20">R12-20</option>
+                            <option value="R12-44">R12-44</option>
+                            <option value="R12-50">R12-50</option>
+                            <option value="R12-51">R12-51</option>
+                            <option value="R12-52">R12-52</option>
+                            <option value="R12-53">R12-53</option>
+                            <option value="R14-01">R14-01</option>
+                            <option value="R14-02">R14-02</option>
+                            <option value="R14-03">R14-03</option>
+                            <option value="R14-04">R14-04</option>
+                            <option value="R14-05">R14-05</option>
+                            <option value="R14-06">R14-06</option>
+                            <option value="R14-40">R14-40</option>
+                            <option value="R15-01">R15-01</option>
+                            <option value="R15-02">R15-02</option>
+                            <option value="R15-03">R15-03</option>
+                            <option value="R15-04">R15-04</option>
+                            <option value="R15-06">R15-06</option>
+                            <option value="R15-11">R15-11</option>
+                            <option value="R15-15">R15-15</option>
+                            <option value="R15-16">R15-16</option>
+                            <option value="R15-17">R15-17</option>
+                            <option value="R15-18">R15-18</option>
+                            <option value="R15-19">R15-19</option>
+                            <option value="R15-20">R15-20</option>
+                            <option value="R15-22">R15-22</option>
+                            <option value="R15-23">R15-23</option>
+                            <option value="R15-24">R15-24</option>
+                            <option value="R15-25">R15-25</option>
+                            <option value="R15-26">R15-26</option>
+                            <option value="R15-27">R15-27</option>
+                            <option value="R15-28">R15-28</option>
+                            <option value="R15-40">R15-40</option>
+                            <option value="R19-05">R19-05</option>
+                            <option value="R24-01">R24-01</option>
+                            <option value="R24-02">R24-02</option>
+                            <option value="R24-03">R24-03</option>
+                            <option value="R24-04">R24-04</option>
+                            <option value="R24-05">R24-05</option>
+                            <option value="R26-01">R26-01</option>
+                            <option value="R26-02">R26-02</option>
+                            <option value="R26-03">R26-03</option>
+                            <option value="R26-04">R26-04</option>
+                            <option value="R26-05">R26-05</option>
+                            <option value="R26-06">R26-06</option>
+                            <option value="R26-07">R26-07</option>
+                            <option value="R26-08">R26-08</option>
+                            <option value="R26-09">R26-09</option>
+                            <option value="R26-10">R26-10</option>
+                            <option value="R26-11">R26-11</option>
+                            <option value="R26-12">R26-12</option>
+                            <option value="R26-40">R26-40</option>
+                            <option value="R27-01">R27-01</option>
+                            <option value="R27-02">R27-02</option>
+                            <option value="R27-03">R27-03</option>
+                            <option value="R27-05">R27-05</option>
+                            <option value="R27-07">R27-07</option>
+                            <option value="R27-08">R27-08</option>
+                            <option value="R27-09">R27-09</option>
+                            <option value="R27-10">R27-10</option>
+                            <option value="R27-11">R27-11</option>
+                            <option value="R27-20">R27-20</option>
+                            <option value="R27-22">R27-22</option>
+                            <option value="R27-40">R27-40</option>
+                            <option value="R29-01">R29-01</option>
+                            <option value="R29-02">R29-02</option>
+                            <option value="R29-03">R29-03</option>
+                            <option value="R29-04">R29-04</option>
+                            <option value="R29-05">R29-05</option>
+                            <option value="R29-06">R29-06</option>
+                            <option value="R29-07">R29-07</option>
+                            <option value="R29-08">R29-08</option>
+                            <option value="R29-09">R29-09</option>
+                            <option value="R29-10">R29-10</option>
+                            <option value="R29-11">R29-11</option>
+                            <option value="R29-12">R29-12</option>
+                            <option value="R29-17">R29-17</option>
+                            <option value="R29-23">R29-23</option>
+                            <option value="R29-40">R29-40</option>
+                            <option value="R31-05">R31-05</option>
+                            <option value="R34-01">R34-01</option>
+                            <option value="R34-02">R34-02</option>
+                            <option value="R34-03">R34-03</option>
+                            <option value="R34-04">R34-04</option>
+                            <option value="R34-05">R34-05</option>
+                            <option value="R34-08">R34-08</option>
+                            <option value="R35-01">R35-01</option>
+                            <option value="R35-02">R35-02</option>
+                            <option value="R35-03">R35-03</option>
+                            <option value="R35-04">R35-04</option>
+                            <option value="R35-05">R35-05</option>
+                            <option value="R35-06">R35-06</option>
+                            <option value="R35-07">R35-07</option>
+                            <option value="R35-08">R35-08</option>
+                            <option value="R35-09">R35-09</option>
+                            <option value="R35-11">R35-11</option>
+                            <option value="R35-12">R35-12</option>
+                            <option value="R35-40">R35-40</option>
+                            <option value="R38-01">R38-01</option>
+                            <option value="R38-02">R38-02</option>
+                            <option value="R501-13">R501-13</option>
+                            <option value="R608-13">R608-13</option>
+                            <option value="OTRO">OTRO</option>
+                        </select>
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-sm font-semibold text-gray-700">TIPO DE MANTENIMIENTO</label>
-                    <select name="TIPO_MANTENIMIENTO" id="tipo_mantenimiento" required
+                    <select name="TIPO_MANTENIMIENTO" required
                         class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-medium">
                         <option value="" disabled selected>Seleccione...</option>
                         <option value="MBC">MBC</option>
@@ -112,12 +415,15 @@
                 </div>
             </div>
 
+            <!-- SECCIÓN 2: ACTIVIDADES REALIZADAS -->
             <div class="space-y-3">
                 <h2 class="text-blue-800 font-bold uppercase text-xs tracking-wider px-2">Actividades Realizadas</h2>
                 <div class="grid grid-cols-1 gap-3" id="itemsContainer">
-                    </div>
+                    <!-- Script genera los ítems -->
+                </div>
             </div>
 
+            <!-- SECCIÓN 3: APOYO A OTRA CUADRILLA -->
             <div class="bg-blue-50 p-5 rounded-2xl shadow-sm space-y-4 border border-blue-200">
                 <h2 class="text-blue-800 font-bold uppercase text-xs tracking-wider">Gestión de Apoyo</h2>
                 
@@ -139,36 +445,38 @@
                 </div>
             </div>
 
+            <!-- SECCIÓN 4: TIEMPOS Y NOVEDADES -->
             <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4 border border-gray-100">
                 <h2 class="text-orange-600 font-bold uppercase text-xs tracking-wider">Tiempos y Novedades</h2>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 italic">¿Horas de lluvia?</label>
-                        <input type="number" step="0.5" name="H_LLUVIA" id="h_lluvia" placeholder="0"
+                        <input type="number" step="0.5" name="H_LLUVIA" placeholder="0"
                             class="w-full mt-1 p-3 bg-orange-50 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg font-semibold text-gray-700">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 italic">¿Horas vehículo varado?</label>
-                        <input type="number" step="0.5" name="H_VARADO" id="h_varado" placeholder="0"
+                        <input type="number" step="0.5" name="H_VARADO" placeholder="0"
                             class="w-full mt-1 p-3 bg-orange-50 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg font-semibold text-gray-700">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 italic">¿Horas en inspección SST / Capacitación?</label>
-                        <input type="number" step="0.5" name="H_SST" id="h_sst" placeholder="0"
+                        <input type="number" step="0.5" name="H_SST" placeholder="0"
                             class="w-full mt-1 p-3 bg-orange-50 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg font-semibold text-gray-700">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 italic">¿Horas en congestión vehicular?</label>
-                        <input type="number" step="0.5" name="H_CONGESTION" id="h_congestion" placeholder="0"
+                        <input type="number" step="0.5" name="H_CONGESTION" placeholder="0"
                             class="w-full mt-1 p-3 bg-orange-50 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg font-semibold text-gray-700">
                     </div>
                 </div>
             </div>
 
+            <!-- SECCIÓN 5: OBSERVACIONES -->
             <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4 border border-gray-100">
                 <h2 class="text-blue-800 font-bold uppercase text-xs tracking-wider">Observaciones</h2>
                 <div>
-                    <textarea name="OBSERVACIONES" id="observaciones" rows="3" placeholder="Escribe aquí cualquier novedad..."
+                    <textarea name="OBSERVACIONES" rows="3" placeholder="Escribe aquí cualquier novedad..."
                         class="w-full mt-1 p-3 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"></textarea>
                 </div>
             </div>
@@ -182,28 +490,19 @@
     </div>
 
     <script>
-        // Lógica de Items
+        // Lógica de Items de Producción
         const listaItems = [
-            { id: 1, desc: "Poda" },
-            { id: 2, desc: "Poda compensada" },
-            { id: 3, desc: "Cerco vivo" },
-            { id: 4, desc: "Rocería" },
-            { id: 5, desc: "Visita puntual" },
-            { id: 6, desc: "Luminarias" },
-            { id: 7, desc: "Horas camioneta" },
-            { id: 8, desc: "Horas moto" },
-            { id: 9, desc: "Tala alta compl. (CAP>95cm)" },
-            { id: 10, desc: "Tala baja compl. (CAP>95cm)" },
-            { id: 11, desc: "Recolección de podas" },
-            { id: 12, desc: "Recolección de talas" },
-            { id: 13, desc: "Horas carro canasta" },
-            { id: 14, desc: "Tala alta compl. (32-95cm)" },
-            { id: 15, desc: "Tala baja compl. (32-95cm)" },
-            { id: 16, desc: "Recolección LV" }
+            { id: 1, desc: "Poda" }, { id: 2, desc: "Poda compensada" },
+            { id: 3, desc: "Cerco vivo" }, { id: 4, desc: "Rocería" },
+            { id: 5, desc: "Visita puntual" }, { id: 6, desc: "Luminarias" },
+            { id: 7, desc: "Horas camioneta" }, { id: 8, desc: "Horas moto" },
+            { id: 9, desc: "Tala alta compl. (CAP>95cm)" }, { id: 10, desc: "Tala baja compl. (CAP>95cm)" },
+            { id: 11, desc: "Recolección de podas" }, { id: 12, desc: "Recolección de talas" },
+            { id: 13, desc: "Horas carro canasta" }, { id: 14, desc: "Tala alta compl. (32-95cm)" },
+            { id: 15, desc: "Tala baja compl. (32-95cm)" }, { id: 16, desc: "Recolección LV" }
         ];
 
         const container = document.getElementById('itemsContainer');
-
         listaItems.forEach(item => {
             const div = document.createElement('div');
             div.className = 'item-card p-4 flex items-center justify-between';
@@ -220,19 +519,18 @@
             container.appendChild(div);
         });
 
-        // Copiar dinámicamente las divisas al segundo menú desplegable de "Apoyo"
+        // Copiar divisas al campo de Apoyo
         const selectPrincipal = document.getElementById('emp');
         const selectApoyo = document.getElementById('divisa_apoyo');
         Array.from(selectPrincipal.options).forEach(opt => {
             if(opt.value !== "") {
                 const newOpt = document.createElement('option');
-                newOpt.value = opt.value;
-                newOpt.text = opt.text;
+                newOpt.value = opt.value; newOpt.text = opt.text;
                 selectApoyo.appendChild(newOpt);
             }
         });
 
-        // Mostrar u ocultar el campo de "Divisa a la que apoyó"
+        // Mostrar u ocultar campo de Apoyo
         document.getElementById('apoyo_cuadrilla').addEventListener('change', function() {
             const containerApoyo = document.getElementById('divisa_apoyo_container');
             if(this.value === 'SI') {
@@ -253,7 +551,6 @@
 
         document.getElementById('prodForm').addEventListener('submit', e => {
             e.preventDefault();
-            
             document.getElementById('loader').style.display = 'flex';
             
             const form = document.getElementById('prodForm');
